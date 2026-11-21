@@ -1,29 +1,30 @@
 name: Release
 
 # Publishes to npm when a version tag is pushed:
-#   npm version minor && git push --follow-tags
+#   npm version patch|minor|major && gitpush pripman-design-system
 #
-# Auth: npm trusted publishing (OIDC) once it is configured for this package on npmjs.com.
-# Before that (first publish only), an NPM_TOKEN repository secret is used instead.
+# Auth: npm trusted publishing (OIDC). No npm token is stored anywhere; npm trusts
+# this workflow file (release.yml) in Pripman/pripman-design-system. Provenance is
+# generated automatically.
 on:
   push:
     tags: ['v*']
 
 permissions:
   contents: read
-  id-token: write # npm trusted publishing + provenance
+  id-token: write # npm trusted publishing (OIDC) + provenance
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
-          cache: npm
-      - name: Use an npm with trusted publishing support
+          package-manager-cache: false # never use caching in release builds
+      - name: Use an npm with trusted publishing support (>= 11.5.1)
         run: npm install -g npm@latest
       - name: Tag must match package.json version
         run: |
@@ -36,6 +37,4 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --access public

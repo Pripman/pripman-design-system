@@ -111,8 +111,9 @@ git push --follow-tags
 ```
 
 The workflow checks that the tag matches `package.json`, runs the type check, tests and build, and publishes with
-provenance. Authentication uses npm trusted publishing (OIDC). Until that is configured on npmjs.com, it uses an
-`NPM_TOKEN` repository secret.
+provenance. Authentication uses npm trusted publishing (OIDC), configured on npmjs.com for this repository and
+`release.yml`. No npm token is stored anywhere. Renaming the workflow file breaks publishing until the trusted
+publisher on npmjs.com is updated to match.
 
 ## License
 
