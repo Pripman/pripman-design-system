@@ -1,0 +1,25 @@
+{
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 2px 4px 0 rgba(0, 0, 0, 0.3)", "$description": "Looper's drop shadow." },
+    "md": { "$value": "0 4px 12px 0 rgba(0, 0, 0, 0.35)" },
+    "lg": { "$value": "0 12px 32px 0 rgba(0, 0, 0, 0.45)" },
+    "inset": { "$value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.45)" }
+  },
+  "duration": {
+    "$type": "duration",
+    "fast": { "$value": "120ms" },
+    "normal": { "$value": "200ms" }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)" }
+  },
+  "texture": {
+    "$type": "other",
+    "oak": {
+      "$description": "Pure-CSS oak grain. Layer it over an oak background colour.",
+      "$value": "repeating-linear-gradient(91deg, rgba(74, 51, 28, 0) 0 7px, rgba(74, 51, 28, 0.12) 7px 8px, rgba(74, 51, 28, 0) 8px 17px, rgba(74, 51, 28, 0.07) 17px 19px, rgba(74, 51, 28, 0) 19px 31px), repeating-linear-gradient(89deg, rgba(255, 255, 255, 0) 0 23px, rgba(255, 255, 255, 0.08) 23px 26px, rgba(255, 255, 255, 0) 26px 47px), linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.1))"
+    }
+  }
+}

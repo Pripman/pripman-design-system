@@ -1,0 +1,31 @@
+/* Glowing amber readout on a dark wine panel (from the looper). */
+.pds-digital {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--pds-space-1);
+  padding: var(--pds-space-2) var(--pds-space-4);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-digital-bg);
+  color: var(--pds-color-digital-fg);
+  box-shadow: var(--pds-shadow-inset);
+  font-family: var(--pds-font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.pds-digital__value {
+  font-size: var(--pds-font-size-2xl);
+  letter-spacing: var(--pds-font-letter-spacing-digital);
+  line-height: 1;
+  text-shadow: 0 0 6px color-mix(in srgb, var(--pds-color-digital-fg) 70%, transparent);
+}
+
+.pds-digital__label {
+  font-size: var(--pds-font-size-xs);
+  letter-spacing: var(--pds-font-letter-spacing-wide);
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.pds-digital--sm .pds-digital__value { font-size: var(--pds-font-size-lg); }
+.pds-digital--lg .pds-digital__value { font-size: var(--pds-font-size-3xl); }

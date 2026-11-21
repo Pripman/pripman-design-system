@@ -1,0 +1,67 @@
+/* Built on the native <dialog> element: open with dialog.showModal(). */
+.pds-dialog {
+  width: min(32rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 1px solid var(--pds-color-border);
+  border-radius: var(--pds-radius-xl);
+  background: var(--pds-color-surface-raised);
+  color: var(--pds-color-fg);
+  box-shadow: var(--pds-shadow-lg);
+}
+
+.pds-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.pds-dialog::backdrop {
+  background: var(--pds-color-overlay);
+  backdrop-filter: blur(2px);
+}
+
+.pds-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pds-space-3);
+  padding: var(--pds-space-4) var(--pds-space-5);
+  background-color: var(--pds-color-surface-oak-strong);
+  background-image: var(--pds-texture-oak);
+  color: var(--pds-color-on-oak-strong);
+}
+
+.pds-dialog__title {
+  margin: 0;
+  font-size: var(--pds-font-size-lg);
+  font-weight: var(--pds-font-weight-medium);
+}
+
+.pds-dialog__close {
+  display: inline-grid;
+  place-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pds-radius-pill);
+  background: transparent;
+  color: inherit;
+  font-size: var(--pds-font-size-xl);
+  line-height: 1;
+  cursor: pointer;
+}
+.pds-dialog__close:hover { background: rgba(255, 255, 255, 0.15); }
+
+.pds-dialog__body {
+  padding: var(--pds-space-5);
+  overflow: auto;
+}
+
+.pds-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--pds-space-3);
+  padding: var(--pds-space-4) var(--pds-space-5);
+  border-top: 1px solid var(--pds-color-border);
+}

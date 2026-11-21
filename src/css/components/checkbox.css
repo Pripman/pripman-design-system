@@ -1,0 +1,50 @@
+/* <label class="pds-checkbox"><input type="checkbox" class="pds-checkbox__input"> Label</label> */
+.pds-checkbox,
+.pds-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pds-space-2);
+  color: var(--pds-color-fg);
+  font-size: var(--pds-font-size-md);
+  cursor: pointer;
+}
+
+.pds-checkbox__input {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  flex: none;
+  border: 2px solid var(--pds-color-border-strong);
+  border-radius: var(--pds-radius-sm);
+  background: var(--pds-color-surface-sunken);
+  cursor: pointer;
+  transition: background-color var(--pds-duration-fast) var(--pds-easing-standard);
+}
+
+.pds-checkbox__input::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  background: var(--pds-color-on-primary);
+  transform: scale(0);
+  transition: transform var(--pds-duration-fast) var(--pds-easing-standard);
+}
+
+.pds-checkbox__input:checked {
+  background: var(--pds-color-primary);
+  border-color: var(--pds-color-primary);
+}
+.pds-checkbox__input:checked::before { transform: scale(1); }
+
+.pds-checkbox__input:focus-visible,
+.pds-switch__input:focus-visible {
+  outline: 2px solid var(--pds-color-focus);
+  outline-offset: 2px;
+}
+
+.pds-checkbox:has(:disabled),
+.pds-switch:has(:disabled) { opacity: 0.5; cursor: not-allowed; }

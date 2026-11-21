@@ -1,0 +1,19 @@
+/* Flex layout helper. Set the gap with --pds-stack-gap. */
+.pds-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-stack-gap, var(--pds-space-4));
+}
+
+.pds-stack--row { flex-direction: row; align-items: center; }
+.pds-stack--wrap { flex-wrap: wrap; }
+
+.pds-stack--align-start { align-items: flex-start; }
+.pds-stack--align-center { align-items: center; }
+.pds-stack--align-end { align-items: flex-end; }
+.pds-stack--align-stretch { align-items: stretch; }
+
+.pds-stack--justify-start { justify-content: flex-start; }
+.pds-stack--justify-center { justify-content: center; }
+.pds-stack--justify-end { justify-content: flex-end; }
+.pds-stack--justify-between { justify-content: space-between; }

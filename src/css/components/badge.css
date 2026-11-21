@@ -1,0 +1,26 @@
+.pds-badge {
+  --_bg: var(--pds-color-secondary);
+  --_fg: var(--pds-color-on-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pds-space-1);
+  padding: 0.125rem var(--pds-space-2);
+  border-radius: var(--pds-radius-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-size: var(--pds-font-size-xs);
+  font-weight: var(--pds-font-weight-bold);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.pds-badge--primary { --_bg: var(--pds-color-primary); --_fg: var(--pds-color-on-primary); }
+.pds-badge--success { --_bg: var(--pds-color-success); --_fg: var(--pds-color-on-success); }
+.pds-badge--warning { --_bg: var(--pds-color-warning); --_fg: var(--pds-color-on-warning); }
+.pds-badge--danger { --_bg: var(--pds-color-danger); --_fg: var(--pds-color-on-danger); }
+.pds-badge--info { --_bg: var(--pds-color-info); --_fg: var(--pds-color-on-info); }
+.pds-badge--oak {
+  --_bg: var(--pds-color-surface-oak);
+  --_fg: var(--pds-color-on-oak);
+  background-image: var(--pds-texture-oak);
+}

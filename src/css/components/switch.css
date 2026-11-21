@@ -1,0 +1,39 @@
+/* <label class="pds-switch"><input type="checkbox" role="switch" class="pds-switch__input"> Label</label> */
+.pds-switch__input {
+  appearance: none;
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  margin: 0;
+  flex: none;
+  border-radius: var(--pds-radius-pill);
+  background: var(--pds-color-surface-sunken);
+  border: 1px solid var(--pds-color-border-strong);
+  box-shadow: var(--pds-shadow-inset);
+  cursor: pointer;
+  transition: background-color var(--pds-duration-normal) var(--pds-easing-standard);
+}
+
+.pds-switch__input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background: var(--pds-color-secondary);
+  box-shadow: var(--pds-shadow-sm);
+  transform: translateY(-50%);
+  transition: transform var(--pds-duration-normal) var(--pds-easing-standard);
+}
+
+.pds-switch__input:checked {
+  background: var(--pds-color-accent);
+  border-color: var(--pds-color-accent);
+}
+
+.pds-switch__input:checked::before {
+  transform: translate(1.1875rem, -50%);
+  background: var(--pds-color-white);
+}

@@ -1,0 +1,73 @@
+{
+  "color": {
+    "$type": "color",
+    "white": { "$value": "#ffffff" },
+    "black": { "$value": "#000000" },
+    "neutral": {
+      "$description": "Cool greys, derived from the looper panels.",
+      "50": { "$value": "#f5f6f7" },
+      "100": { "$value": "#e4e7ea" },
+      "200": { "$value": "#d1dbe0", "$description": "Looper 'font light'." },
+      "300": { "$value": "#c5c5c9", "$description": "Looper 'secondary'." },
+      "400": { "$value": "#9ea1a6" },
+      "500": { "$value": "#7e8186", "$description": "Looper 'surface'." },
+      "600": { "$value": "#595b5f" },
+      "700": { "$value": "#474747", "$description": "Looper 'background'." },
+      "800": { "$value": "#333333" },
+      "900": { "$value": "#242424" },
+      "950": { "$value": "#161616" }
+    },
+    "red": {
+      "$description": "Signal red, the primary brand colour (looper 'primary' = 600).",
+      "50": { "$value": "#fdeceb" },
+      "100": { "$value": "#fbd0ce" },
+      "200": { "$value": "#f5a19d" },
+      "300": { "$value": "#ec6d67" },
+      "400": { "$value": "#df3f38" },
+      "500": { "$value": "#cf2a2a" },
+      "600": { "$value": "#c31c23" },
+      "700": { "$value": "#9e161c" },
+      "800": { "$value": "#761116" },
+      "900": { "$value": "#4f0b0e" }
+    },
+    "green": {
+      "$description": "Accent green (looper 'accent' = 500).",
+      "100": { "$value": "#e6f4d9" },
+      "300": { "$value": "#a6d97a" },
+      "500": { "$value": "#70b92f" },
+      "600": { "$value": "#5a9a22" },
+      "700": { "$value": "#447519" },
+      "900": { "$value": "#22400a" }
+    },
+    "oak": {
+      "$description": "Oak wood, used for panels, frames and dividers.",
+      "50": { "$value": "#faf3e8" },
+      "100": { "$value": "#f3e6d0" },
+      "200": { "$value": "#e8d1ab" },
+      "300": { "$value": "#d9b98a" },
+      "400": { "$value": "#c9a26f" },
+      "500": { "$value": "#b88a55" },
+      "600": { "$value": "#9c7143" },
+      "700": { "$value": "#7e5a33" },
+      "800": { "$value": "#644626" },
+      "900": { "$value": "#4a331c" }
+    },
+    "amber": {
+      "$description": "Warm amber, used for the digital display and focus rings.",
+      "300": { "$value": "#f3c9a9" },
+      "400": { "$value": "#e8ae89", "$description": "Looper 'digital font'." },
+      "600": { "$value": "#c97c4c" }
+    },
+    "wine": {
+      "900": { "$value": "#2a1618", "$description": "Looper 'digital display'." }
+    },
+    "yellow": {
+      "400": { "$value": "#f0b93a" },
+      "700": { "$value": "#8a5f00" }
+    },
+    "blue": {
+      "400": { "$value": "#6aaee6" },
+      "600": { "$value": "#2f6fa8" }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# Pripman Design System
+
+The shared look for the apps on the pripman domain: the **looper** palette (signal red, cool greys, accent green, amber
+readouts) with **oak** for panels and frames. It's dark by default, and a light theme is included.
+
+It ships as one package, `@pripman/design-system`, with three layers that share one source of truth, the design tokens:
+
+| Layer | Import | For |
+| --- | --- | --- |
+| Tokens | `@pripman/design-system/tokens.css` | CSS custom properties `--pds-*` |
+| Tokens (JS) | `@pripman/design-system/tokens` | Resolved values, e.g. for `<canvas>` drawing |
+| Tailwind v4 | `@pripman/design-system/tailwind.css` | `bg-surface`, `text-fg`, `bg-pds-oak-500` … |
+| CSS components | `@pripman/design-system/css` | Tokens + base + `.pds-*` component classes, any framework |
+| React | `@pripman/design-system/react` | Components that render the same `.pds-*` classes (React 18+) |
+
+## Install
+
+```sh
+npm install @pripman/design-system
+```
+
+## Plain HTML / CSS
+
+```html
+<link rel="stylesheet" href="node_modules/@pripman/design-system/dist/pds.css" />
+
+<button class="pds-button pds-button--primary">Record</button>
+```
+
+## React (Next.js, Vite …)
+
+```tsx
+// app/layout.tsx (or main.tsx)
+import '@pripman/design-system/css';
+
+import { Button, Card, CardBody } from '@pripman/design-system/react';
+
+<Card variant="oak">
+  <CardBody>
+    <Button variant="primary">Record</Button>
+  </CardBody>
+</Card>;
+```
+
+The React build is marked `"use client"`, so it works inside the Next.js app router.
+
+## Tailwind v4
+
+```css
+@import 'tailwindcss';
+@import '@pripman/design-system/css';
+@import '@pripman/design-system/tailwind.css';
+```
+
+```html
+<div class="bg-surface text-fg border border-border rounded-lg shadow-md">…</div>
+```
+
+## Themes
+
+Dark is the default, applied on `:root`. To switch, set `data-theme="light"` on `<html>` or on any subtree. The
+**Theme** button in the toolbar above toggles it in this Storybook.
+
+## Overriding
+
+All component styles live in the cascade layers `pds.base` and `pds.components`, so any unlayered CSS in your app
+overrides them without specificity fights. To re-theme, override the semantic tokens:
+
+```css
+:root {
+  --pds-color-primary: var(--pds-color-oak-700);
+}
+```
+
+## Fonts
+
+The system uses **Roboto** and **Roboto Mono**, but doesn't bundle them. Load them in the app, for example with
+`next/font/google` or `@fontsource/roboto`. The system font stack is the fallback.

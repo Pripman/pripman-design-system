@@ -1,0 +1,75 @@
+/* Text inputs, textareas and selects, with label / hint / error. */
+.pds-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pds-space-1);
+}
+
+.pds-field__label {
+  font-size: var(--pds-font-size-sm);
+  font-weight: var(--pds-font-weight-medium);
+  color: var(--pds-color-fg);
+}
+
+.pds-field__hint {
+  font-size: var(--pds-font-size-xs);
+  color: var(--pds-color-fg-muted);
+}
+
+.pds-field__error {
+  font-size: var(--pds-font-size-xs);
+  font-weight: var(--pds-font-weight-medium);
+  color: var(--pds-color-danger);
+}
+
+.pds-input,
+.pds-select {
+  width: 100%;
+  min-height: var(--pds-size-control-md);
+  padding: 0 var(--pds-space-3);
+  border: 1px solid var(--pds-color-border-strong);
+  border-radius: var(--pds-radius-md);
+  background: var(--pds-color-surface-sunken);
+  color: var(--pds-color-fg);
+  font: inherit;
+  font-size: var(--pds-font-size-md);
+  transition: border-color var(--pds-duration-fast) var(--pds-easing-standard);
+}
+
+textarea.pds-input {
+  min-height: 6rem;
+  padding: var(--pds-space-2) var(--pds-space-3);
+  resize: vertical;
+}
+
+.pds-input::placeholder { color: var(--pds-color-fg-muted); opacity: 0.8; }
+
+.pds-input:hover,
+.pds-select:hover { border-color: var(--pds-color-fg-muted); }
+
+.pds-input:focus-visible,
+.pds-select:focus-visible {
+  outline: 2px solid var(--pds-color-focus);
+  outline-offset: 0;
+  border-color: var(--pds-color-focus);
+}
+
+.pds-input[aria-invalid="true"],
+.pds-select[aria-invalid="true"] { border-color: var(--pds-color-danger); }
+
+.pds-input:disabled,
+.pds-select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.pds-select {
+  appearance: none;
+  padding-right: var(--pds-space-10);
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.25rem) 50%,
+    calc(100% - 0.9rem) 50%;
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}

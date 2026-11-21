@@ -1,0 +1,78 @@
+.pds-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--pds-color-border);
+  border-radius: var(--pds-radius-lg);
+  background: var(--pds-color-surface);
+  color: var(--pds-color-fg);
+  overflow: hidden;
+}
+
+.pds-card--raised {
+  background: var(--pds-color-surface-raised);
+  border-color: transparent;
+  box-shadow: var(--pds-shadow-md);
+}
+
+.pds-card--sunken {
+  background: var(--pds-color-surface-sunken);
+  box-shadow: var(--pds-shadow-inset);
+}
+
+/* Oak panel: wood grain over oak, like the side panels on vintage audio gear. */
+.pds-card--oak,
+.pds-surface-oak {
+  background-color: var(--pds-color-surface-oak);
+  background-image: var(--pds-texture-oak);
+  border-color: var(--pds-color-border-oak);
+  color: var(--pds-color-on-oak);
+  box-shadow: var(--pds-shadow-sm);
+}
+
+.pds-surface-oak-strong {
+  background-color: var(--pds-color-surface-oak-strong);
+  background-image: var(--pds-texture-oak);
+  color: var(--pds-color-on-oak-strong);
+}
+
+/* Oak frame around a regular surface. */
+.pds-card--oak-frame {
+  border: var(--pds-space-2) solid var(--pds-color-surface-oak-strong);
+  border-image: var(--pds-texture-oak) 1;
+  box-shadow: var(--pds-shadow-md);
+}
+
+.pds-card__header,
+.pds-card__body,
+.pds-card__footer {
+  padding: var(--pds-space-4) var(--pds-space-5);
+}
+
+.pds-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pds-space-3);
+  border-bottom: 1px solid var(--pds-color-border);
+}
+
+.pds-card--oak .pds-card__header,
+.pds-card--oak .pds-card__footer {
+  border-color: var(--pds-color-border-oak);
+}
+
+.pds-card__title {
+  margin: 0;
+  font-size: var(--pds-font-size-lg);
+  font-weight: var(--pds-font-weight-medium);
+  line-height: var(--pds-font-line-height-tight);
+}
+
+.pds-card__body { flex: 1; }
+
+.pds-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--pds-space-3);
+  border-top: 1px solid var(--pds-color-border);
+}

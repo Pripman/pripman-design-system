@@ -1,0 +1,48 @@
+{
+  "color": {
+    "$type": "color",
+    "canvas": { "$value": "{color.neutral.800}", "$description": "Page background." },
+    "surface": { "$value": "{color.neutral.700}", "$description": "Cards, panels." },
+    "surface-raised": { "$value": "{color.neutral.600}", "$description": "Elevated surfaces: menus, dialogs." },
+    "surface-sunken": { "$value": "{color.neutral.900}", "$description": "Wells, inputs, tracks." },
+    "surface-oak": { "$value": "{color.oak.500}", "$description": "Oak panel background." },
+    "surface-oak-strong": { "$value": "{color.oak.700}", "$description": "Darker oak, for frames and headers." },
+
+    "fg": { "$value": "{color.neutral.200}", "$description": "Default text." },
+    "fg-muted": { "$value": "{color.neutral.300}", "$description": "Secondary text." },
+    "fg-inverse": { "$value": "{color.neutral.950}" },
+    "on-oak": { "$value": "{color.neutral.950}", "$description": "Text on surface-oak." },
+    "on-oak-strong": { "$value": "{color.oak.50}", "$description": "Text on surface-oak-strong." },
+
+    "border": { "$value": "{color.neutral.600}" },
+    "border-strong": { "$value": "{color.neutral.400}" },
+    "border-oak": { "$value": "{color.oak.800}" },
+
+    "primary": { "$value": "{color.red.600}" },
+    "primary-hover": { "$value": "{color.red.700}" },
+    "primary-active": { "$value": "{color.red.800}" },
+    "on-primary": { "$value": "{color.white}" },
+
+    "secondary": { "$value": "{color.neutral.300}" },
+    "secondary-hover": { "$value": "{color.neutral.200}" },
+    "secondary-active": { "$value": "{color.neutral.400}" },
+    "on-secondary": { "$value": "{color.neutral.950}" },
+
+    "accent": { "$value": "{color.green.500}" },
+    "on-accent": { "$value": "{color.neutral.950}" },
+
+    "success": { "$value": "{color.green.500}" },
+    "on-success": { "$value": "{color.neutral.950}" },
+    "warning": { "$value": "{color.yellow.400}" },
+    "on-warning": { "$value": "{color.neutral.950}" },
+    "danger": { "$value": "{color.red.200}", "$description": "Light red so error text stays readable on dark greys." },
+    "on-danger": { "$value": "{color.neutral.950}" },
+    "info": { "$value": "{color.blue.400}" },
+    "on-info": { "$value": "{color.neutral.950}" },
+
+    "focus": { "$value": "{color.amber.400}", "$description": "Focus ring." },
+    "digital-bg": { "$value": "{color.wine.900}" },
+    "digital-fg": { "$value": "{color.amber.400}" },
+    "overlay": { "$value": "rgba(0, 0, 0, 0.6)", "$description": "Dialog backdrop." }
+  }
+}
