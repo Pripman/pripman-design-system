@@ -1,6 +1,6 @@
 {
   "name": "@pripman/design-system",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "description": "Pripman design system: design tokens, CSS components and React components.",
   "license": "MIT",
   "type": "module",
