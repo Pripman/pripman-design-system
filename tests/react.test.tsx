@@ -9,6 +9,7 @@ import {
   Checkbox,
   Dialog,
   DigitalDisplay,
+  KebabMenu,
   Select,
   Stack,
   Switch,
@@ -184,5 +185,37 @@ describe('Badge, DigitalDisplay, Stack', () => {
     const stack = screen.getByTestId('stack');
     expect(stack).toHaveClass('pds-stack', 'pds-stack--row');
     expect(stack.style.getPropertyValue('--pds-stack-gap')).toBe('var(--pds-space-2)');
+  });
+});
+
+describe('KebabMenu', () => {
+  it('toggles a list of buttons, with optional icons, and fires onSelect', () => {
+    const onSelect = vi.fn();
+    render(
+      <KebabMenu
+        items={[
+          { label: 'Edit', icon: <svg data-testid="icon" />, onSelect },
+          { label: 'Delete' },
+        ]}
+      />,
+    );
+    const trigger = screen.getByRole('button', { name: 'More actions' });
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('button', { name: 'Edit' })).toBeNull();
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Edit' }));
+    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('closes on Escape', () => {
+    render(<KebabMenu items={[{ label: 'Edit' }]} />);
+    const trigger = screen.getByRole('button', { name: 'More actions' });
+    fireEvent.click(trigger);
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
 });
