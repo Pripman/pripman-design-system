@@ -7,6 +7,7 @@ import {
   Card,
   CardBody,
   Checkbox,
+  ContentSwitcher,
   Dialog,
   DigitalDisplay,
   KebabMenu,
@@ -217,5 +218,31 @@ describe('KebabMenu', () => {
     fireEvent.click(trigger);
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  });
+});
+
+describe('ContentSwitcher', () => {
+  const items = [
+    { value: 'a', label: 'List', icon: <svg data-testid="icon" /> },
+    { value: 'b', label: 'Grid' },
+    { value: 'c', 'aria-label': 'Map', icon: <svg /> },
+  ];
+
+  it('renders a radiogroup with icon, text and icon-only items', () => {
+    render(<ContentSwitcher aria-label="View" items={items} />);
+    expect(screen.getByRole('radiogroup', { name: 'View' })).toHaveClass('pds-switcher');
+    expect(screen.getByRole('radio', { name: 'List' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: 'Map' })).toBeInTheDocument();
+  });
+
+  it('selects on click and supports arrow keys', () => {
+    const onChange = vi.fn();
+    render(<ContentSwitcher aria-label="View" items={items} onChange={onChange} />);
+    fireEvent.click(screen.getByRole('radio', { name: 'Grid' }));
+    expect(onChange).toHaveBeenCalledWith('b');
+    expect(screen.getByRole('radio', { name: 'Grid' })).toHaveAttribute('aria-checked', 'true');
+    fireEvent.keyDown(screen.getByRole('radio', { name: 'Grid' }), { key: 'ArrowRight' });
+    expect(screen.getByRole('radio', { name: 'Map' })).toHaveAttribute('aria-checked', 'true');
   });
 });
