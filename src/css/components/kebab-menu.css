@@ -24,6 +24,7 @@
 
 .pds-kebab__menu[hidden] { display: none; }
 .pds-kebab--start .pds-kebab__menu { right: auto; left: 0; }
+.pds-kebab--up .pds-kebab__menu { top: auto; bottom: calc(100% + var(--pds-space-1)); }
 
 .pds-kebab__item {
   display: flex;

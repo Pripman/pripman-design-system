@@ -211,6 +211,30 @@ describe('KebabMenu', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
 
+  it('opens below by default and flips above / to the other side when there is no room', () => {
+    const { container } = render(<KebabMenu items={[{ label: 'Edit' }]} />);
+    const root = container.querySelector('.pds-kebab') as HTMLElement;
+    const trigger = screen.getByRole('button', { name: 'More actions' });
+    const menu = container.querySelector('.pds-kebab__menu') as HTMLElement;
+    Object.defineProperty(menu, 'offsetWidth', { value: 160, configurable: true });
+    Object.defineProperty(menu, 'offsetHeight', { value: 100, configurable: true });
+    Object.defineProperty(document.documentElement, 'clientWidth', { value: 1000, configurable: true });
+    Object.defineProperty(document.documentElement, 'clientHeight', { value: 800, configurable: true });
+    const rect = (left: number, top: number) =>
+      ({ left, right: left + 32, top, bottom: top + 32, width: 32, height: 32 }) as DOMRect;
+
+    trigger.getBoundingClientRect = () => rect(500, 100);
+    fireEvent.click(trigger);
+    expect(root).not.toHaveClass('pds-kebab--up');
+    expect(root).not.toHaveClass('pds-kebab--start');
+    fireEvent.click(trigger);
+
+    trigger.getBoundingClientRect = () => rect(10, 760);
+    fireEvent.click(trigger);
+    expect(root).toHaveClass('pds-kebab--up');
+    expect(root).toHaveClass('pds-kebab--start');
+  });
+
   it('closes on Escape', () => {
     render(<KebabMenu items={[{ label: 'Edit' }]} />);
     const trigger = screen.getByRole('button', { name: 'More actions' });

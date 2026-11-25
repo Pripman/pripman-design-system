@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Button, type ButtonVariant } from './Button';
 import { cx } from './cx';
 
@@ -37,6 +37,9 @@ export function KebabMenu({ items, label = 'More actions', align = 'end', varian
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [start, setStart] = useState(align === 'start');
+  const [up, setUp] = useState(false);
   const menuId = `pds-kebab-${useId()}`;
 
   useEffect(() => {
@@ -58,8 +61,46 @@ export function KebabMenu({ items, label = 'More actions', align = 'end', varian
     };
   }, [open]);
 
+  // Re-position when opened: prefer below / the requested side, flip when the menu would overflow the viewport.
+  useLayoutEffect(() => {
+    if (!open) return;
+    const trigger = triggerRef.current;
+    const menu = menuRef.current;
+    if (!trigger || !menu) return;
+    const place = () => {
+      const t = trigger.getBoundingClientRect();
+      const menuW = menu.offsetWidth;
+      const menuH = menu.offsetHeight;
+      const vw = document.documentElement.clientWidth || window.innerWidth;
+      const vh = document.documentElement.clientHeight || window.innerHeight;
+      const gap = 4;
+
+      const spaceBelow = vh - t.bottom;
+      const spaceAbove = t.top;
+      const nextUp = spaceBelow < menuH + gap && spaceAbove > spaceBelow;
+
+      // 'end' = menu's right edge on the trigger's right edge (menu extends left).
+      const roomLeft = t.right; // menu extends left of the trigger's right edge
+      const roomRight = vw - t.left; // menu extends right of the trigger's left edge
+      const preferEnd = align === 'end';
+      const preferredRoom = preferEnd ? roomLeft : roomRight;
+      const otherRoom = preferEnd ? roomRight : roomLeft;
+      const useOther = preferredRoom < menuW && otherRoom > preferredRoom;
+      const nextStart = useOther ? preferEnd : !preferEnd;
+
+      setUp(nextUp);
+      setStart(nextStart);
+    };
+    place();
+    window.addEventListener('resize', place);
+    return () => window.removeEventListener('resize', place);
+  }, [open, align]);
+
   return (
-    <div ref={rootRef} className={cx('pds-kebab', align === 'start' && 'pds-kebab--start', className)}>
+    <div
+      ref={rootRef}
+      className={cx('pds-kebab', start && 'pds-kebab--start', up && 'pds-kebab--up', className)}
+    >
       <Button
         ref={triggerRef}
         variant={variant}
@@ -73,7 +114,7 @@ export function KebabMenu({ items, label = 'More actions', align = 'end', varian
       >
         <KebabIcon />
       </Button>
-      <div id={menuId} className="pds-kebab__menu" hidden={!open}>
+      <div ref={menuRef} id={menuId} className="pds-kebab__menu" hidden={!open}>
         {items.map((item, i) => (
           <button
             key={i}
