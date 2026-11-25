@@ -10,6 +10,7 @@ export {
 } from './Field';
 export { Checkbox, Switch, type CheckboxProps, type SwitchProps } from './Checkbox';
 export { Dialog, type DialogProps } from './Dialog';
+export { KebabMenu, type KebabMenuProps, type KebabMenuItem } from './KebabMenu';
 export { Tabs, type TabsProps, type TabItem } from './Tabs';
 export { Badge, type BadgeProps, type BadgeTone } from './Badge';
 export { DigitalDisplay, type DigitalDisplayProps } from './DigitalDisplay';
