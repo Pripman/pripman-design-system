@@ -1,7 +1,7 @@
 /* <label class="pds-switch"><input type="checkbox" role="switch" class="pds-switch__input"> Label</label> */
 
 /* Physical slide switch seen from above: a metal bezel around a black slot with
-   a black ridged knob. Knob on the right = on, and the slot to the left of the
+   a grey ridged knob. Knob on the right = on, and the slot to the left of the
    knob then shows dark green. Knob on the left = off, slot stays black. */
 .pds-switch__input {
   appearance: none;
@@ -26,12 +26,12 @@
   position: absolute;
   inset: 0.25rem;
   border-radius: 0.125rem;
-  background: linear-gradient(90deg, #0a3d1c, #0a3d1c) no-repeat left / 0 100%, #050505;
+  background: linear-gradient(90deg, #0a3d1c, #0a3d1c) no-repeat left / 1.5rem 100%, #050505;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
   transition: background-size var(--pds-duration-fast) var(--pds-easing-standard);
 }
 
-/* The knob: black with grip ridges. */
+/* The knob: grey with grip ridges. */
 .pds-switch__input::after {
   content: "";
   position: absolute;
@@ -42,7 +42,7 @@
   border-radius: 0.125rem;
   background:
     repeating-linear-gradient(90deg, transparent 0 0.17rem, rgba(255, 255, 255, 0.12) 0.17rem 0.22rem) center / 0.9rem 60% no-repeat,
-    linear-gradient(180deg, #2a2a2a, #0d0d0d);
+    linear-gradient(180deg, #7a7a7a, #4a4a4a);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition: transform var(--pds-duration-fast) var(--pds-easing-standard);
 }
@@ -51,6 +51,11 @@
   /* green fills the slot up to (and behind) the knob */
   background-size: 100% 100%;
   background-color: #050505;
+}
+
+/* Disabled: the open (non-green) part of the slot is a lighter grey. */
+.pds-switch__input:disabled::before {
+  background-color: #3a3a3a;
 }
 
 .pds-switch__input:checked::after {
