@@ -73,7 +73,7 @@ wins. To re-theme, override semantic tokens such as `--pds-color-primary`.
 ## Components (v0.1)
 
 Button, Card (+ Header/Title/Body/Footer), TextField, TextArea, Select, Checkbox, Switch, Dialog (native `<dialog>`),
-Tabs, Badge, DigitalDisplay, Stack. Every component exists as plain CSS classes. The React components only render those
+Tabs, Badge, Spinner, DigitalDisplay, Stack. Every component exists as plain CSS classes. The React components only render those
 classes, so HTML and React output look identical.
 
 ## Development

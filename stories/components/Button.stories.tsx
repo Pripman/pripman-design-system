@@ -30,6 +30,17 @@ export const Variants: Story = {
   ),
 };
 
+export const Loading: Story = {
+  render: (args) => (
+    <Stack direction="row" gap="3" align="center">
+      <Button {...args} loading>Saving</Button>
+      <Button {...args} variant="secondary" loading>Saving</Button>
+      <Button {...args} variant="oak" loading>Saving</Button>
+      <Button {...args} iconOnly loading aria-label="Loading" />
+    </Stack>
+  ),
+};
+
 export const Sizes: Story = {
   render: (args) => (
     <Stack direction="row" gap="3" align="center">

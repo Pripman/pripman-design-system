@@ -1,0 +1,32 @@
+.pds-spinner {
+  --_size: 1.5rem;
+  --_color: var(--pds-color-primary);
+
+  display: inline-block;
+  flex: none;
+  box-sizing: border-box;
+  width: var(--_size);
+  height: var(--_size);
+  border: max(2px, calc(var(--_size) / 8)) solid color-mix(in srgb, var(--_color) 25%, transparent);
+  border-top-color: var(--_color);
+  border-radius: 50%;
+  animation: pds-spinner-rotate 0.8s linear infinite;
+}
+
+.pds-spinner--sm { --_size: 1rem; }
+.pds-spinner--lg { --_size: 2.5rem; }
+.pds-spinner--current { --_color: currentColor; }
+
+@keyframes pds-spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pds-spinner { animation-duration: 2.4s; }
+}
+
+/* Inside a button: inherit text colour, scale with the font */
+.pds-button > .pds-spinner {
+  --_size: 1.1em;
+  --_color: currentColor;
+}

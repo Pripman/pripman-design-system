@@ -17,6 +17,7 @@ export {
   type ContentSwitcherItem,
 } from './ContentSwitcher';
 export { Tabs, type TabsProps, type TabItem } from './Tabs';
+export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Badge, type BadgeProps, type BadgeTone } from './Badge';
 export { DigitalDisplay, type DigitalDisplayProps } from './DigitalDisplay';
 export { Stack, type StackProps, type SpaceToken } from './Stack';

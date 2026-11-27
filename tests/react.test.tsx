@@ -12,6 +12,7 @@ import {
   DigitalDisplay,
   KebabMenu,
   Select,
+  Spinner,
   Stack,
   Switch,
   Tabs,
@@ -268,5 +269,52 @@ describe('ContentSwitcher', () => {
     expect(screen.getByRole('radio', { name: 'Grid' })).toHaveAttribute('aria-checked', 'true');
     fireEvent.keyDown(screen.getByRole('radio', { name: 'Grid' }), { key: 'ArrowRight' });
     expect(screen.getByRole('radio', { name: 'Map' })).toHaveAttribute('aria-checked', 'true');
+  });
+});
+
+describe('Spinner', () => {
+  it('renders an accessible status with size and colour modifiers', () => {
+    render(<Spinner size="lg" current label="Saving" />);
+    const spinner = screen.getByRole('status', { name: 'Saving' });
+    expect(spinner).toHaveClass('pds-spinner', 'pds-spinner--lg', 'pds-spinner--current');
+  });
+
+  it('defaults to a "Loading" label', () => {
+    render(<Spinner />);
+    expect(screen.getByRole('status', { name: 'Loading' })).toHaveClass('pds-spinner');
+  });
+});
+
+describe('Button loading', () => {
+  it('shows a spinner, is disabled and does not fire clicks', () => {
+    const onClick = vi.fn();
+    render(
+      <Button loading onClick={onClick}>
+        Save
+      </Button>,
+    );
+    const button = screen.getByRole('button', { name: 'Save' });
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toHaveClass('pds-button--loading');
+    expect(button.querySelector('.pds-spinner')).not.toBeNull();
+    fireEvent.click(button);
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('has no spinner and stays enabled when not loading', () => {
+    render(<Button>Save</Button>);
+    const button = screen.getByRole('button', { name: 'Save' });
+    expect(button).toBeEnabled();
+    expect(button.querySelector('.pds-spinner')).toBeNull();
+  });
+
+  it('replaces the icon with the spinner for icon-only buttons', () => {
+    render(
+      <Button loading iconOnly aria-label="Play">
+        <svg data-testid="icon" />
+      </Button>,
+    );
+    expect(screen.queryByTestId('icon')).toBeNull();
   });
 });
