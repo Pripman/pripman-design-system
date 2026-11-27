@@ -1,39 +1,60 @@
 /* <label class="pds-switch"><input type="checkbox" role="switch" class="pds-switch__input"> Label</label> */
+
+/* Physical slide switch seen from above: a metal bezel around a black slot with
+   a black ridged knob. Knob on the right = on, and the slot to the left of the
+   knob then shows dark green. Knob on the left = off, slot stays black. */
 .pds-switch__input {
   appearance: none;
   position: relative;
-  width: 2.75rem;
-  height: 1.5rem;
+  display: inline-block;
+  width: 3.5rem;
+  height: 1.75rem;
   margin: 0;
   flex: none;
-  border-radius: var(--pds-radius-pill);
-  background: var(--pds-color-surface-sunken);
-  border: 1px solid var(--pds-color-border-strong);
-  box-shadow: var(--pds-shadow-inset);
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0.25rem;
+  /* bezel */
+  background: linear-gradient(145deg, var(--pds-color-neutral-600), var(--pds-color-neutral-900));
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: background-color var(--pds-duration-normal) var(--pds-easing-standard);
 }
 
+/* The slot: black, with the green "lamp" showing left of the knob when on. */
 .pds-switch__input::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 0.1875rem;
-  width: 1.125rem;
-  height: 1.125rem;
-  border-radius: 50%;
-  background: var(--pds-color-secondary);
-  box-shadow: var(--pds-shadow-sm);
-  transform: translateY(-50%);
-  transition: transform var(--pds-duration-normal) var(--pds-easing-standard);
+  inset: 0.25rem;
+  border-radius: 0.125rem;
+  background: linear-gradient(90deg, #0a3d1c, #0a3d1c) no-repeat left / 0 100%, #050505;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
+  transition: background-size var(--pds-duration-fast) var(--pds-easing-standard);
 }
 
-.pds-switch__input:checked {
-  background: var(--pds-color-accent);
-  border-color: var(--pds-color-accent);
+/* The knob: black with grip ridges. */
+.pds-switch__input::after {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  border-radius: 0.125rem;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 0.17rem, rgba(255, 255, 255, 0.12) 0.17rem 0.22rem) center / 0.9rem 60% no-repeat,
+    linear-gradient(180deg, #2a2a2a, #0d0d0d);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform var(--pds-duration-fast) var(--pds-easing-standard);
 }
 
 .pds-switch__input:checked::before {
-  transform: translate(1.1875rem, -50%);
-  background: var(--pds-color-white);
+  /* green fills the slot up to (and behind) the knob */
+  background-size: 100% 100%;
+  background-color: #050505;
 }
+
+.pds-switch__input:checked::after {
+  transform: translateX(1.5rem);
+}
+
+.pds-switch__input:active::after { filter: brightness(1.3); }
