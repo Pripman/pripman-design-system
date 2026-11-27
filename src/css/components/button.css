@@ -107,3 +107,10 @@
 }
 
 .pds-button--block { display: flex; width: 100%; }
+
+/* Loading: spinner shown, button disabled (look stays full strength) */
+.pds-button--loading:disabled,
+.pds-button--loading[aria-disabled="true"] {
+  opacity: 0.8;
+  cursor: progress;
+}
